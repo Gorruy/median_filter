@@ -11,15 +11,15 @@ main (int argc, char* argv[])
 {
   if (argc != 2 && !strcmp(argv[1], "--help"))
   {
-    printf("Wrong usage!");
-    return -1;
+    fprintf(stderr, "Wrong usage!");
+    exit(1);
   }
 
   long window_size = strtol(argv[1], NULL, 10);
   if (window_size > INT_MAX || window_size < INT_MIN)
   {
-    printf("Wrong argument: out of range!");
-    return -1;
+    fprintf(stderr, "Wrong argument: out of range!");
+    exit(1);
   }
 
   int window[window_size];
@@ -38,6 +38,7 @@ main (int argc, char* argv[])
 
     if (fgetc(stdin) == '\n') break;
     scanf("%s", ch);
+    printf("cycle\n");
   } while (1);
 
   if (counter != 0) median_filter(window, counter);

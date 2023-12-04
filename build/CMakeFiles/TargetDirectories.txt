@@ -1,0 +1,3 @@
+/home/vladimir/pr/median_filter/build/CMakeFiles/median_filter.dir
+/home/vladimir/pr/median_filter/build/CMakeFiles/edit_cache.dir
+/home/vladimir/pr/median_filter/build/CMakeFiles/rebuild_cache.dir
