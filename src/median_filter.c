@@ -13,17 +13,18 @@
 
 int print_bin(int number, long window_size)
 {
-  char buf[32];
-  int counter = 0;
+  char buf[33];
+  buf[32] = 0;
+  int counter = 31;
   while (number != 0)
   {
-    buf[counter++] = number % 2 + '0';
+    buf[counter--] = number % 2 + '0';
     number = number >> 1;
   }
   buf[counter] = 0;
   for (size_t i = 0; i < window_size; i++)
   {
-    printf("%s ", buf);
+    printf("%s ", (buf + counter + 1));
   }
   printf("\n");
   return 0;
@@ -69,7 +70,11 @@ k_order(int* numbers, int k, long size)
 int
 median_filter(int* numbers, long window_size)
 {
-  if (window_size == 1) print_bin(numbers[0], 1);
+  if (window_size == 1) 
+  {
+    print_bin(numbers[0], 1);
+    return 0;
+  }
 
   int middle;
   if (window_size % 2 == 0)
@@ -80,8 +85,8 @@ median_filter(int* numbers, long window_size)
   }
   else
   {
-  middle = window_size >> 1;
-  print_bin(k_order(numbers, middle, window_size), window_size);
+    middle = window_size >> 1;
+    print_bin(k_order(numbers, middle, window_size), window_size);
   }
 
   return 0;

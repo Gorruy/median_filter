@@ -16,7 +16,7 @@ main (int argc, char* argv[])
   }
 
   long window_size = strtol(argv[1], NULL, 10);
-  if (window_size > INT_MAX || window_size < INT_MIN)
+  if (window_size > INT_MAX || window_size < 1)
   {
     fprintf(stderr, "Wrong argument: out of range!");
     exit(1);
