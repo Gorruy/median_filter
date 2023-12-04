@@ -4,11 +4,28 @@
 #include "median_filter.h"
 
 
-#define SWAP(a, b) (a ^= b ^= a ^= b)
+#define SWAP(a, b) do{\
+  int buf = a;\
+  a = b;\
+  b = buf;\
+} while(0)
+
 
 int print_bin(int number, long window_size)
 {
-  printf("NUMBER IS: %i\n", number);
+  char buf[32];
+  int counter = 0;
+  while (number != 0)
+  {
+    buf[counter++] = number % 2 + '0';
+    number = number >> 1;
+  }
+  buf[counter] = 0;
+  for (size_t i = 0; i < window_size; i++)
+  {
+    printf("%s ", buf);
+  }
+  printf("\n");
   return 0;
 }
 
@@ -30,20 +47,20 @@ int partition(int* numbers, int left, int right)
 }
 
 int 
-k_order(int numbers[], int k, long size)
+k_order(int* numbers, int k, long size)
 {
   int right = size, left = 0;
   while (1)
   {
     int mid = partition(numbers, left, right);
-    printf("%i %i\n", mid, k);
     if (mid == k) 
     {
-      break;
       return numbers[mid];
     }
-    else if (mid < k) left = mid;
-    else right = mid;
+    else if (mid < k)
+      left = mid + 1;
+    else
+      right = mid;
   }
 
   return -1;
@@ -54,13 +71,19 @@ median_filter(int* numbers, long window_size)
 {
   if (window_size == 1) print_bin(numbers[0], 1);
 
-  int middle = window_size >> 1;
-  if (window_size % 2 == 1)
+  int middle;
+  if (window_size % 2 == 0)
   {
-    return (k_order(numbers, middle, window_size) 
-          + k_order(numbers, middle + 1, window_size)) >> 1;
+    middle = (window_size >> 1) - 1;
+    print_bin((k_order(numbers, middle, window_size) 
+          + k_order(numbers, middle + 1, window_size)) >> 1, window_size);
+  }
+  else
+  {
+  middle = window_size >> 1;
+  print_bin(k_order(numbers, middle, window_size), window_size);
   }
 
-  return k_order(numbers, middle, window_size);
+  return 0;
 }
 

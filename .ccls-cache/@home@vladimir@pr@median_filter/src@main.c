@@ -38,10 +38,9 @@ main (int argc, char* argv[])
 
     if (fgetc(stdin) == '\n') break;
     scanf("%s", ch);
-    printf("cycle\n");
   } while (1);
 
   if (counter != 0) median_filter(window, counter);
-
+ 
   return 0;
 }
