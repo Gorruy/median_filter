@@ -26,7 +26,7 @@ int print_bin(int number, long window_size)
   {
     printf("%s ", (buf + counter + 1));
   }
-  printf("\n");
+  printf(" ");
   return 0;
 }
 

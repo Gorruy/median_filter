@@ -9,7 +9,8 @@
 int
 main (int argc, char* argv[])
 {
-  if (argc != 2 || strcmp(argv[1], "--help") != 0)
+  printf("%i %s", argc, argv[1]);
+  if (argc != 2 && strcmp(argv[1], "--help") != 0)
   {
     printf("Wrong usage!\n");
     exit(1);
@@ -41,6 +42,7 @@ main (int argc, char* argv[])
   } while (1);
 
   if (counter != 0) median_filter(window, counter);
+  printf("\n");
  
   return 0;
 }
