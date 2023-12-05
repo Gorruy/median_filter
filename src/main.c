@@ -10,7 +10,7 @@ int
 main (int argc, char* argv[])
 {
   printf("%i %s", argc, argv[1]);
-  if (argc != 2 && strcmp(argv[1], "--help") != 0)
+  if (argc != 2)
   {
     printf("Wrong usage!\n");
     exit(1);

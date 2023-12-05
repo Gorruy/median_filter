@@ -36,6 +36,6 @@ int main()
   {
     assert(partition_check() == 0 && "Partition fault!\n");
   }
-  printf("tests passed!");
+  printf("partition tests passed!\n");
 }
 

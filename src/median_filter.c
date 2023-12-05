@@ -11,11 +11,12 @@
 } while(0)
 
 
-int print_bin(int number, long window_size)
+int print_bin(int nbr, long window_size)
 {
-  char buf[33];
-  buf[32] = 0;
-  int counter = 31;
+  unsigned number = nbr;
+  char buf[34];
+  buf[33] = 0;
+  int counter = 32;
   while (number != 0)
   {
     buf[counter--] = number % 2 + '0';
@@ -26,7 +27,7 @@ int print_bin(int number, long window_size)
   {
     printf("%s ", (buf + counter + 1));
   }
-  printf(" ");
+
   return 0;
 }
 
