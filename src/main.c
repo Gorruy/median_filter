@@ -42,7 +42,13 @@ main (int argc, char* argv[])
     window[counter++] = (int)strtol(word, NULL, 2);
 
     // В буфере символ конца строки - закончился поток данных
-    if (fgetc(stdin) == '\n') break;
+    char ch;
+    while (ch = fgetc(stdin), ch == ' ') {}
+    if (ch == '\n' || ch == EOF || ch == '\r') 
+      break;
+    else 
+      ungetc(ch, stdin);
+
     scanf("%32s", word);
   } while (1);
 
