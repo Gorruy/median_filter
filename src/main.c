@@ -33,8 +33,7 @@ main (int argc, char* argv[])
 
   // Буфер для одного значения, будем считывать по размеру окна и сразу выводить
   char word[33];
-  scanf("%32s", word);
-  do
+  while (scanf("%32s", word))
   {
     // Считали необходимое число слов, фильтруем
     if (counter == window_size)
@@ -57,10 +56,7 @@ main (int argc, char* argv[])
       RAISE_WRONG_DATA;
     else
       ungetc(ch, stdin);
-
-    scanf("%32s", word);
-  } while (1);
-
+  }
 
   // Фильтруем оствавшиеся слова
   if (counter != 0) median_filter(window, counter);
