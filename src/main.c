@@ -5,6 +5,10 @@
 
 #include "main.h"
 
+#define RAISE_WRONG_DATA do {\
+  printf("Wrong input data, not binary!\n");\
+  exit(1);\
+} while(0)
 
 int
 main (int argc, char* argv[])
@@ -39,14 +43,19 @@ main (int argc, char* argv[])
       counter = 0;
     }
     
-    window[counter++] = (int)strtol(word, NULL, 2);
+    char* number_check;
+    window[counter++] = (int)strtol(word, &number_check, 2);
+    if (*number_check != '\0') 
+      RAISE_WRONG_DATA;
 
     // В буфере символ конца строки - закончился поток данных
     char ch;
     while (ch = fgetc(stdin), ch == ' ') {}
     if (ch == '\n' || ch == EOF || ch == '\r') 
       break;
-    else 
+    else if (ch != '0' && ch != '1') 
+      RAISE_WRONG_DATA;
+    else
       ungetc(ch, stdin);
 
     scanf("%32s", word);
