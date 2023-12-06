@@ -1,7 +1,12 @@
 # median_filter
-
-### cd build && cmake .. && make
-### ./bin/median_filter (window_size)
+### build
+```bash
+$ cd build && cmake .. && make
+```
+### usage
+```bash
+$ ./bin/median_filter (window_size)
+```
 
 ### Example:
 ```bash
