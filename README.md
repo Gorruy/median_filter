@@ -1,7 +1,7 @@
 # median_filter
 ### build
 ```bash
-$ cd build && cmake .. && make
+$ mkdir buld && cd build && cmake .. && make
 ```
 ### usage
 ```bash
