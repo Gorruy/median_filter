@@ -17,12 +17,14 @@ int partition_check()
   srand(time(NULL));
   int array[1024];
 
+  // Генерируется случайная тестовая последовательность
   for (size_t i = 0; i < 1024; i++)
   {
     array[i] = rand();
   }
   int k = partition(array, 0, 1024);
   int num = array[k];
+  // Стандартной функцией сортировки полностью сортируется массив
   qsort(array, 1024, sizeof(int), cmpfunc);
 
   assert(num == array[k] && "Partition doesnt work!!\n");

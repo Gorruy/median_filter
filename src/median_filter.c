@@ -17,6 +17,10 @@ int print_bin(int nbr, long window_size)
   char buf[34];
   buf[33] = 0;
   int counter = 32;
+
+  if (number == 0) buf[counter--] = '0';
+
+  // Записываем значения с конца, чтобы выводить на печать в формате little endian
   while (number != 0)
   {
     buf[counter--] = number % 2 + '0';
@@ -33,6 +37,7 @@ int print_bin(int nbr, long window_size)
 
 int partition(int* numbers, int left, int right)
 {
+  // Функция для разделения массива
   int pivot = numbers[left];
   for (size_t i = left + 1; i < right; i++)
   {
@@ -51,6 +56,7 @@ int partition(int* numbers, int left, int right)
 int 
 k_order(int* numbers, int k, long size)
 {
+  // Функция для нахождения к-ой порядковой статистики
   int right = size, left = 0;
   while (1)
   {
@@ -70,13 +76,15 @@ k_order(int* numbers, int k, long size)
 
 int
 median_filter(int* numbers, long window_size)
-{
+{  
+  // Если размер окан равен единице фильтрация не требуется
   if (window_size == 1) 
   {
     print_bin(numbers[0], 1);
     return 0;
   }
 
+  // Проверка на четность
   int middle;
   if (window_size % 2 == 0)
   {
