@@ -58,7 +58,7 @@ main (int argc, char* argv[])
       ungetc(ch, stdin);
   }
 
-  // Фильтруем оствавшиеся слова
+  // Фильтруем оставшиеся слова
   if (counter != 0) median_filter(window, counter);
   printf("\n");
  
