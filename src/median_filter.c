@@ -77,7 +77,7 @@ k_order(int* numbers, int k, long size)
 int
 median_filter(int* numbers, long window_size)
 {  
-  // Если размер окан равен единице фильтрация не требуется
+  // Если размер окон равен единице фильтрация не требуется
   if (window_size == 1) 
   {
     print_bin(numbers[0], 1);
