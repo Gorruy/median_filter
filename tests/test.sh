@@ -18,6 +18,10 @@ rm -f test_partition test_print *.txt
 
 rm -f test_main output.txt && gcc test_main.c ../src/median_filter.c -o test_main;
 
+# Тест функции нахождения к-ой статистики
+rm -f test_k_order && gcc test_k_order.c ../src/median_filter.c -o test_k_order;
+./test_k_order;
+rm -f test_k_order;
 # Тест всей программы
 cycles=10000;
 window_size=10;
