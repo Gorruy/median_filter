@@ -12,7 +12,7 @@ int cmpfunc (const void * a, const void * b)
    return *(int*)a - *(int*)b;
 }
 
-int partition_check()
+void partition_check()
 {
   srand(time(NULL));
   int array[1024];
@@ -27,17 +27,16 @@ int partition_check()
   // Стандартной функцией сортировки полностью сортируется массив
   qsort(array, 1024, sizeof(int), cmpfunc);
 
-  assert(num == array[k] && "Partition doesnt work!!\n");
-
-  return 0;
+  if (num != array[k])
+    exit(1);
 }
 
 int main()
 {
   for (size_t i = 0; i < 100; i++)
   {
-    assert(partition_check() == 0 && "Partition fault!\n");
+    partition_check();
   }
-  printf("partition tests passed!\n");
+  exit(0);
 }
 
