@@ -10,7 +10,7 @@
 int check(int cycle)
 {
   srand(time(NULL));
-  freopen("output.txt", "a+", stdout);
+  freopen("output_print_bin.txt", "a+", stdout);
   char buf[32];
   
   for (size_t i = 0; i < cycle; i++)

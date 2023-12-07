@@ -1,34 +1,31 @@
 #!/usr/bin/bash
 
 #Тест модуля вывода данных в бинарном формате
-rm -f output.txt test_print test.txt && gcc test_print_bin.c ../src/median_filter.c -o test_print;
+gcc test_print_bin.c ../src/median_filter.c -o test_print;
 
 printer='10101000 1010101010 111 1 1111111 1111111 110101010 11111111111111111111111111111111 10000000000000000000000000000000';
 counter=9;
-echo $printer > test.txt && echo $printer | ./test_print $counter;
+echo $printer > test_print_bin.txt && echo $printer | ./test_print $counter;
 
-diff -w test.txt output.txt;
-
-rm -f test_partition && gcc test_partition.c ../src/median_filter.c -o test_partition;
+diff -w test_print_bin.txt output_print_bin.txt;
 
 # Тест модуля сортировки
+gcc test_partition.c ../src/median_filter.c -o test_partition;
 ./test_partition;
 
-rm -f test_partition test_print *.txt
-
-rm -f test_main output.txt && gcc test_main.c ../src/median_filter.c -o test_main;
 
 # Тест функции нахождения к-ой статистики
-rm -f test_k_order && gcc test_k_order.c ../src/median_filter.c -o test_k_order;
+gcc test_k_order.c ../src/median_filter.c -o test_k_order;
 ./test_k_order;
-rm -f test_k_order;
+
 # Тест всей программы
+gcc test_main.c ../src/median_filter.c -o test_main;
 cycles=10000;
 window_size=10;
 let res=$cycles/$window_size+1;
-./test_main $cycles | ../bin/median_filter $window_size > test.txt;
+./test_main $cycles | ../bin/median_filter $window_size > test_main.txt;
 
-grep -o '[^[:space:]]*' test.txt | sort -u | wc -l| (read words &&
+grep -o '[^[:space:]]*' test_main.txt | sort -u | wc -l| (read words &&
 if [[ $(($words)) -eq $res ]] 
 then
     echo "first main test passed!"
@@ -84,4 +81,4 @@ then
 else 
     echo "seventh main test doesnt passed!" 
 fi);
-rm -f test_main test.txt;
+rm -f *.txt test_print_bin test_main test_partition test_k_order;
