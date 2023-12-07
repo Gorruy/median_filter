@@ -81,4 +81,4 @@ then
 else 
     echo "seventh main test doesnt passed!" 
 fi);
-rm -f *.txt test_print_bin test_main test_partition test_k_order;
+rm -f *.txt test_main test_partition test_k_order test_print;
