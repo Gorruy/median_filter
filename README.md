@@ -3,6 +3,10 @@
 ```bash
 $ mkdir build && cd build && cmake .. && make
 ```
+### tests
+```bash
+$ mkdir build && cd build && cmake -DBUILD_TESTS .. && make && ctest ctest -T Test -T Coverage
+```
 ### usage
 ```bash
 $ ./bin/median_filter (window_size)
