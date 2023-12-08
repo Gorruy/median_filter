@@ -50,5 +50,17 @@ then
     exit 1
 fi }
 
+echo "12222 1 1 10101010101010" | ../bin/median_filter 1| { read res &&
+if [[ $res != "Wrong input data, not binary!" ]] 
+then 
+    exit 1
+fi }
+
+echo "2222 1 1 10101010101010" | ../bin/median_filter 13| { read res &&
+if [[ $res != "Wrong input data, not binary!" ]] 
+then 
+    exit 1
+fi }
+
 exit 0
 

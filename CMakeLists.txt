@@ -1,13 +1,21 @@
-cmake_minimum_required(VERSION 2.8.10) 
+cmake_minimum_required(VERSION 3.5) 
 project(median_filter)
 
 
 file(GLOB SOURCES "src/*.c")
 
-option(BUILD_TESTING OFF)
+set(CMAKE_C_FLAGS "-Wall -O2")
 
-if (BUILD_TESTING)
+enable_testing()
+
+option(BUILD_TESTS OFF)
+
+if (BUILD_TESTS)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../build/")
+    link_libraries(gcov)
+    set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -fprofile-generate -lgcov --coverage")
     enable_testing()
+    set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -Wall -O2")
 
     file(GLOB TEST "tests/*.c")
 
@@ -42,11 +50,11 @@ if (BUILD_TESTING)
         "PrintBinTest"
         ${PRINT_TEST}
         ${PROJECT_SOURCE_DIR}/tests/test_print_bin.sh)
-endif(BUILD_TESTING)
+endif(BUILD_TESTS)
 
-set(CMAKE_C_FLAGS "-Wall -O2")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin/")
 
 add_executable(median_filter ${SOURCES})
 
+include(CTest)
