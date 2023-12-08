@@ -5,7 +5,7 @@ $ mkdir build && cd build && cmake .. && make
 ```
 ### tests
 ```bash
-$ mkdir build && cd build && cmake -DBUILD_TESTS .. && make && ctest ctest -T Test -T Coverage
+$ mkdir build && cd build && cmake -DBUILD_TESTS=ON .. && make && ctest ctest -T Test -T Coverage
 ```
 ### usage
 ```bash
