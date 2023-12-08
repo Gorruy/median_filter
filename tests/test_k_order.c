@@ -24,9 +24,9 @@ int main()
     }
     int tst = k_order(numbers, 6, 10);
     qsort(numbers, 10, sizeof(int), cmpfunc);
-    assert(tst == numbers[6] && "k_order test doesn't passed!\n");
+    if (tst != numbers[6])
+      exit(1);
   }
 
-  printf("k_order test passed!\n");
-  return 0;
+  exit(0);
 }
