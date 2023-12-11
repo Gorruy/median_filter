@@ -6,16 +6,18 @@ file(GLOB SOURCES "src/*.c")
 
 set(CMAKE_C_FLAGS "-Wall -O2")
 
-enable_testing()
-
 option(BUILD_TESTS OFF)
 
 if (BUILD_TESTS)
+    set(COV_FLAGS "-fprofile-arcs -ftest-coverage -Wall -O2 -fprofile-arcs -fprofile-generate -lgcov --coverage")
+
+    enable_testing()
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../build/")
     link_libraries(gcov)
-    set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -fprofile-generate -lgcov --coverage")
     enable_testing()
-    set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -Wall -O2")
+
+    set_source_files_properties(../src/median_filter.c PROPERTIES COMPILE_FLAGS ${COV_FLAGS})
+    set_source_files_properties(../src/main.c PROPERTIES COMPILE_FLAGS ${COV_FLAGS})
 
     file(GLOB TEST "tests/*.c")
 
@@ -50,8 +52,8 @@ if (BUILD_TESTS)
         "PrintBinTest"
         ${PRINT_TEST}
         ${PROJECT_SOURCE_DIR}/tests/test_print_bin.sh)
-endif(BUILD_TESTS)
 
+endif(BUILD_TESTS)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin/")
 
